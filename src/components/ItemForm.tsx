@@ -1,12 +1,7 @@
 import { FormEventHandler, useState } from "react";
 
 type Props = {
-  onItemCreation: (
-    title: String,
-    link: String,
-    notes: String
-    //image: String
-  ) => void;
+  onItemCreation: (item: Item) => void;
 };
 
 function ItemForm({ onItemCreation }: Props) {
@@ -17,7 +12,10 @@ function ItemForm({ onItemCreation }: Props) {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    onItemCreation(title, link, notes);
+    onItemCreation({ title, link, notes, id: Math.random() * 1000 });
+    setTitle("");
+    setLink("");
+    setNotes("");
   };
 
   return (
@@ -28,21 +26,26 @@ function ItemForm({ onItemCreation }: Props) {
           className="m-2 text-cyan-950 p-2 rounded-xl"
           type="text"
           value={title}
+          placeholder="What do you want?"
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
           className="m-2 text-cyan-950 p-2 rounded-xl"
           type="text"
           value={link}
+          placeholder="Paste your link"
           onChange={(e) => setLink(e.target.value)}
         />
         <input
           className="m-2 text-cyan-950 p-2 rounded-xl"
           type="text"
           value={notes}
+          placeholder="Colour, size..."
           onChange={(e) => setNotes(e.target.value)}
         />
-        <button>Save</button>
+        <button className="rounded-full bg-yellow-500 w-52 p-2" type="submit">
+          Save
+        </button>
       </form>
     </div>
   );
