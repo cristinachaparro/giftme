@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className="bg-indigo-700 flex min-h-screen flex-col items-center p-24">
       <List />
       <div className="flex flex-col text-center">
         <h1 className="text-3xl mb-16 font-extrabold">Gift me</h1>
@@ -12,8 +12,8 @@ export default function Home() {
         <h2 className="text-xl mb-4">Get what you want.</h2>
       </div>
       <div className="mt-10">
-        <button className="rounded-full m-4 bg-yellow-700 p-2">Sign up</button>
-        <button className="rounded-full m-4 bg-yellow-700 p-2">Sign in</button>
+        <button className="rounded-full m-4 bg-cyan-400 p-2">Sign up</button>
+        <button className="rounded-full m-4 bg-cyan-400 p-2">Sign in</button>
       </div>
     </main>
   );

@@ -19,8 +19,8 @@ function ItemForm({ onItemCreation }: Props) {
   };
 
   return (
-    <div className="w-96 m-2">
-      <h1 className="text-3xl text-center m-2 font-bold">Your gift</h1>
+    <div className=" w-[500px] m-2">
+      <h1 className="text-3xl text-center m-2 p-2 font-bold">Your gift</h1>
       <form onSubmit={handleSubmit} className="form flex flex-col">
         <input
           className="m-2 text-cyan-950 p-2 rounded-xl"
@@ -43,9 +43,14 @@ function ItemForm({ onItemCreation }: Props) {
           placeholder="Colour, size..."
           onChange={(e) => setNotes(e.target.value)}
         />
-        <button className="rounded-full bg-yellow-500 w-52 p-2" type="submit">
-          Save
-        </button>
+        <div className="text-center">
+          <button
+            className="rounded-full bg-cyan-400 w-52 py-2 m-2"
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );
