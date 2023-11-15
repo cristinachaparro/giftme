@@ -1,6 +1,6 @@
 type Item = {
-  title: String;
-  link: String;
-  notes: String;
-  id: Number;
+  title: string;
+  link: string;
+  notes: string;
+  id: number;
 };

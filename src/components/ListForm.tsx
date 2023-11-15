@@ -1,26 +1,20 @@
 import { FormEventHandler, useState } from "react";
 
-import ReactModal from "react-modal";
-
 type Props = {
-  onItemCreation: (item: Item) => void;
+  onListCreation: (list: List) => void;
 };
 
-function ItemForm({ onItemCreation }: Props) {
+function ListForm({ onListCreation }: Props) {
   const [title, setTitle] = useState("");
-  const [link, setLink] = useState("");
   const [notes, setNotes] = useState("");
   //const [image, setImage] = useState();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    onItemCreation({ title, link, notes, id: Math.random() * 1000 });
+    onListCreation({ title, notes, id: Math.random() * 1000 });
     setTitle("");
-    setLink("");
     setNotes("");
   };
-
-  //Turn into modal using the new package
 
   return (
     <div className="border border-solid rounded-lg border-sky-300 w-[500px] m-2 p-4">
@@ -33,13 +27,7 @@ function ItemForm({ onItemCreation }: Props) {
           placeholder="What do you want?"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <input
-          className="m-2 text-cyan-950 p-2 rounded-xl"
-          type="text"
-          value={link}
-          placeholder="Paste your link"
-          onChange={(e) => setLink(e.target.value)}
-        />
+
         <input
           className="m-2 text-cyan-950 p-2 rounded-xl"
           type="text"
@@ -60,4 +48,4 @@ function ItemForm({ onItemCreation }: Props) {
   );
 }
 
-export default ItemForm;
+export default ListForm;
