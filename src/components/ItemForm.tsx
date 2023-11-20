@@ -20,9 +20,8 @@ function ItemForm({ onItemCreation }: Props) {
     setTitle("");
     setLink("");
     setNotes("");
+    setModalOpen(false);
   };
-
-  //Turn into modal using the new package
 
   return (
     <div className="border border-solid rounded-lg border-sky-300 w-[500px] m-2 p-4 flex justify-center content-center">
