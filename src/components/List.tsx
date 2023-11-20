@@ -1,14 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemForm from "./ItemForm";
 import Item from "./Item";
 
 function List() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>(() => {
+    const saved = localStorage.getItem("items");
+    const initialValue = JSON.parse(saved || "[]");
+    return initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items, items.length]);
 
   // 2. estado que gestione si se edita un Item
-  // 3. funcion que coge los datos de newItem del ItemForm y añade un Item nuevo al array
 
   return (
     <>
