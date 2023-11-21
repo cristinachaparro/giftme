@@ -5,17 +5,27 @@ import ItemForm from "./ItemForm";
 import Item from "./Item";
 
 function List() {
-  const [items, setItems] = useState<Item[]>(() => {
-    const saved = localStorage.getItem("items");
-    const initialValue = JSON.parse(saved || "[]");
-    return initialValue;
-  });
+  const [items, setItems] = useState<Item[] | undefined>();
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items, items.length]);
+    let saved;
+    saved = window.localStorage.getItem("items");
+    const initialValue = JSON.parse(saved || "[]");
+    setItems(initialValue);
+  }, []);
+
+  useEffect(() => {
+    // TODO: can't remove items
+    if (items && items.length > 0) {
+      window?.localStorage?.setItem("items", JSON.stringify(items));
+    }
+  }, [items, items?.length]);
 
   // 2. estado que gestione si se edita un Item
+
+  if (!items) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>

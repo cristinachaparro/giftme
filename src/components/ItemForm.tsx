@@ -26,7 +26,11 @@ function ItemForm({ onItemCreation }: Props) {
   return (
     <div className="border border-solid rounded-lg border-sky-300 w-[500px] m-2 p-4 flex justify-center content-center">
       <button onClick={() => setModalOpen(true)}>+</button>
-      <ReactModal className={"bg-white w-[900px] mx-auto"} isOpen={modalOpen}>
+      <ReactModal
+        className={"bg-white w-[900px] mx-auto"}
+        isOpen={modalOpen}
+        ariaHideApp={false}
+      >
         <button className=" text-right" onClick={() => setModalOpen(false)}>
           X
         </button>

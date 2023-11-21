@@ -4,9 +4,12 @@ type Props = {
 
 function Item({ item }: Props) {
   return (
-    <div className="m-3" key={`${item.title}-${item.id}`}>
+    <div
+      className="m-3 border rounded-xl border-solid border-black shadow-2xl shadow-indigo-900 bg-white"
+      key={`${item.title}-${item.id}`}
+    >
       <h1 className=" ml-3 text-xl">{item.title}</h1>
-      <h2 className="ml-3 visited:text-sky-300 truncatez">
+      <h2 className="ml-3 text-sky-950 visited:text-sky-300 truncated">
         {" "}
         <a href={item.link} target="_blank" rel="noopener noreferrer">
           {item.link}
