@@ -3,4 +3,6 @@ type Item = {
   link: string;
   notes: string;
   id: number;
+  // image: string;
+  // price: number;
 };

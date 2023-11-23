@@ -23,6 +23,7 @@ function List() {
 
   // 2. estado que gestione si se edita un Item
 
+  // search for a nice cool looking spinner
   if (!items) {
     return <h1>Loading...</h1>;
   }
