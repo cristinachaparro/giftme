@@ -1,10 +1,11 @@
 type Props = {
   item: Item;
+  onDelete: () => void;
 };
 
 //state to edit/delete the item
 
-function Item({ item }: Props) {
+function Item({ item, onDelete }: Props) {
   return (
     <>
       <div
@@ -12,9 +13,9 @@ function Item({ item }: Props) {
         key={`${item.title}-${item.id}`}
       >
         <div className="flex flex-col items-end">
-          <button>...</button>
+          {/* <button>...</button> */}
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={onDelete}>Delete</button>
         </div>
         <h1 className=" ml-3 text-xl">{item.title}</h1>
         <h2 className="ml-3 text-sky-950 visited:text-sky-300 truncated">

@@ -15,11 +15,15 @@ function List() {
   }, []);
 
   useEffect(() => {
-    // TODO: can't remove items
-    if (items && items.length > 0) {
+    if (items) {
       window?.localStorage?.setItem("items", JSON.stringify(items));
     }
   }, [items, items?.length]);
+
+  function onItemDelete(id: number) {
+    const updatedList: Item[] = items!.filter((item) => item.id !== id);
+    setItems(updatedList);
+  }
 
   // 2. estado que gestione si se edita un Item
 
@@ -37,7 +41,11 @@ function List() {
           <h1 className="text-3xl font-bold p-4">My gift list</h1>
         </div>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item
+            item={item}
+            onDelete={() => onItemDelete(item.id)}
+            key={item.id}
+          />
         ))}
       </div>
     </>
