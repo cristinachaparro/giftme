@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ItemForm from "./ItemForm";
+import ItemModal from "./ItemModal";
 import Item from "./Item";
+import ItemForm from "./ItemForm";
 
 function List() {
   const [items, setItems] = useState<Item[] | undefined>();
+  const [editingItem, setEditingItem] = useState<number | undefined>();
 
   useEffect(() => {
     let saved;
@@ -25,7 +27,15 @@ function List() {
     setItems(updatedList);
   }
 
-  // 2. estado que gestione si se edita un Item
+  function onItemSave(editedItem: Item) {
+    console.log(editedItem);
+
+    const updatedList: Item[] = items!.map((item) =>
+      item.id !== editedItem.id ? item : editedItem
+    );
+    setItems(updatedList);
+    setEditingItem(undefined);
+  }
 
   // search for a nice cool looking spinner
   if (!items) {
@@ -34,19 +44,28 @@ function List() {
 
   return (
     <>
-      <ItemForm onItemCreation={(item) => setItems([...items, item])} />
+      <ItemModal onItemCreation={(item) => setItems([...items, item])} />
       <div className="border border-solid rounded-lg border-sky-300 w-[600px]">
         {/* Make it so that users can choose the title of their lists */}
         <div className="text-center">
           <h1 className="text-3xl font-bold p-4">My gift list</h1>
         </div>
-        {items.map((item) => (
-          <Item
-            item={item}
-            onDelete={() => onItemDelete(item.id)}
-            key={item.id}
-          />
-        ))}
+        {items.map((item, i) =>
+          editingItem === i ? (
+            <ItemForm
+              onSubmit={onItemSave}
+              initialValues={item}
+              key={item.id}
+            />
+          ) : (
+            <Item
+              item={item}
+              onDelete={() => onItemDelete(item.id)}
+              onEdit={() => setEditingItem(i)}
+              key={item.id}
+            />
+          )
+        )}
       </div>
     </>
   );
